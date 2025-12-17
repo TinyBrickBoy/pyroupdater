@@ -20,5 +20,6 @@ mkdir /etc/elytra
 systemctl stop wings
 systemctl disable wings
 rm /etc/systemd/system/wings.service
-sudo mv /var/lib/pterodactyl /var/lib/pyrodactyl
-sudo systemctl enable --now elytra
+sudo mv /var/lib/pterodactyl/*.* /var/lib/pyrodactyl/*.*
+
+sudo systemctl enable elytra
