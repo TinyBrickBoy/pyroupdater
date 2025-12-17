@@ -21,5 +21,25 @@ systemctl stop wings
 systemctl disable wings
 rm /etc/systemd/system/wings.service
 sudo mv /var/lib/pterodactyl/*.* /var/lib/pyrodactyl/*.*
+udo tee /etc/systemd/system/elytra.service > /dev/null <<'EOF'
+[Unit]
+Description=Pyrodactyl Elytra Daemon
+After=docker.service
+Requires=docker.service
+PartOf=docker.service
 
+[Service]
+User=root
+WorkingDirectory=/etc/elytra
+LimitNOFILE=4096
+PIDFile=/var/run/elytra/daemon.pid
+ExecStart=/usr/local/bin/elytra
+Restart=on-failure
+StartLimitInterval=180
+StartLimitBurst=30
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
+EOF
 sudo systemctl enable elytra
