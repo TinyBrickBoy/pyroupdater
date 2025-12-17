@@ -21,9 +21,7 @@ systemctl stop wings
 systemctl disable wings
 rm /etc/systemd/system/wings.service
 sudo mv /var/lib/pterodactyl/*.* /var/lib/pyrodactyl/*.*
-mkdir -p /tmp/rustic-install
 curl -L https://github.com/rustic-rs/rustic/releases/download/v0.10.0/rustic-v0.10.0-x86_64-unknown-linux-musl.tar.gz | sudo tar -zx -C /usr/local/bin
-sudo mv /tmp/rustic-install/rustic /usr/local/bin/
 sudo tee /etc/systemd/system/elytra.service > /dev/null <<'EOF'
 [Unit]
 Description=Pyrodactyl Elytra Daemon
